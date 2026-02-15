@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
-    <title>TESTIMONIALS| Wellness With Elliot </title>
+    <title>GALLERY | Wellness With Elliot </title>
 
 
     <!-- Bootstrap min css -->
@@ -20,11 +20,116 @@
     <!-- custom css -->
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <style>
+        .gallery-area {
+            padding: 80px 0;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .gallery-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+        .gallery-item-overlay h5 {
+            color: #fff;
+            margin: 0;
+            font-size: 18px;
+        }
+        .gallery-item-overlay p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 5px 0 0;
+            font-size: 14px;
+        }
+        .gallery-placeholder {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #666;
+        }
+        .gallery-placeholder i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #999;
+        }
+        .gallery-placeholder p {
+            margin: 0;
+            font-size: 14px;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .lightbox-close:hover {
+            color: #ff6b6b;
+        }
+    </style>
+
 </head>
 
-<body class="faq">
+<body>
 
-    <!-- tpm-header-area start -->
     <!-- tpm-header-area start -->
     <header class="tmp-header-area-start header-one">
         <!-- Header Top -->
@@ -64,7 +169,7 @@
                                     <img src="assets/img/logo.png" alt="Insurance_logo" width="300px">
                                 </a>
                             </div>
-                            <a href="contact.html" class="tmp-btn btn-primary">Get a Free Consultation</a>
+                            <a href="book-now.html" class="tmp-btn btn-primary">Book Appointment</a>
                         </div>
     
                         <!-- Navigation Area -->
@@ -204,8 +309,7 @@
             </nav>
         </div>
     </div>
-
-    <!-- Start Breadcrumb area  -->
+    <!-- tpm-header-area end -->
 
     <!-- Start Breadcrumb area  -->
     <div class="breadcrumb-area bg_image tmp-section-gap breadcrumb-bg">
@@ -213,11 +317,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-inner text-center">
-                        <h1 class="title split-collab">Ask Question</h1>
+                        <h1 class="title split-collab">Gallery</h1>
                         <ul class="page-list">
                             <li class="tmp-breadcrumb-item"><a href="/">Home</a></li>
                             <li class="icon"><i class="fa-solid fa-angle-right"></i></li>
-                            <li class="tmp-breadcrumb-item active">Testimonials</li>
+                            <li class="tmp-breadcrumb-item active">Gallery</li>
                         </ul>
                         <div class="circle-1"></div>
                     </div>
@@ -226,241 +330,139 @@
         </div>
     </div>
     <!-- End Breadcrumb area  -->
-    <!-- End Breadcrumb area  -->
 
-
-
-    <div class="testimonial-with-brand bg-1 bg_image">
-        <div class="testimonial-brand-area tmp-section-gapTop">
-            <div class="container">
-                <!-- Header Section -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="testimonials-button-area">
-                            <div class="section-head text-align-left">
-                                <div class="section-sub-title">
-                                    <img src="assets/images/services/section-custom-menubar.png" alt="Insurance_testimonials">
-                                    <span class="subtitle">Client's Testimonials</span>
-                                </div>
-                                <h2 class="title split-collab">What Our Clients Say</h2>
-                            </div>
-    
-                            <div class="button-next-prev">
-                                <div class="swiper-button-prev"></div>
-                                <div class="swiper-button-next"></div>
-                            </div>
+    <!-- Gallery Section -->
+    <div class="gallery-area tmp-section-gap">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-head text-center mb--50">
+                        <div class="section-sub-title center-title">
+                            <span class="subtitle">OUR GALLERY</span>
                         </div>
+                        <h2 class="title split-collab">Moments & Memories</h2>
+                        <p class="description mt--20">
+                            A glimpse into our journey of helping clients protect what matters most.
+                        </p>
                     </div>
                 </div>
-    
-                <!-- Testimonials Slider -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="swiper-style-one tmp-section-gapBottom">
-                            <div class="swiper-container-style-two">
-                                <div class="swiper-wrapper">
-                                    <!-- Chase Testimonial -->
-                                    <div class="swiper-slide">
-                                        <div class="single-card card-horizontal">
-                                            <div class="card-inner" style="height: 300px;">
-                                                <div class="content">
-                                                    <div class="rating rating-style-three">
-                                                        <div class="stars-group">
-                                                            <div class="star">
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <p class="description">This is the man to go to if you need private health insurance, very knowledgeable, professional, treats you like a friend rather than a client, and will do his best to get you what you need without breaking your budget. 10/10 recommend!</p>
-                                                    <div class="content content-without-bg">
-                                                        <div class="name">Chase</div>
-                                                        <div class="designation">Private Health Insurance Client</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-    
-                                    <!-- Danyl Testimonial -->
-                                    <div class="swiper-slide">
-                                        <div class="single-card card-horizontal">
-                                            <div class="card-inner" style="height: 300px;">
-                                                <div class="content">
-                                                    <div class="rating rating-style-three">
-                                                        <div class="stars-group">
-                                                            <div class="star">
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <p class="description">Elliot was very professional, followed up when he said he would and very organized. Never did I feel pressured by Elliot and when I had questions about the coverage he always gave me the answers I needed to make sure it was a good fit for me. I highly recommend Elliot Tiemann for your health coverage solutions.</p>
-                                                    <div class="content content-without-bg">
-                                                        <div class="name">Danyl</div>
-                                                        <div class="designation">Health Coverage Client</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-    
-                                    <!-- Regina Testimonial -->
-                                    <div class="swiper-slide">
-                                        <div class="single-card card-horizontal">
-                                            <div class="card-inner" style="height: 300px;">
-                                                <div class="content">
-                                                    <div class="rating rating-style-three">
-                                                        <div class="stars-group">
-                                                            <div class="star">
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <p class="description">I highly recommend Elliot when shopping for health insurance. I have always hated the process of "shopping for insurance". He made that a much more pleasant experience and my family is well covered. I now have better insurance and perks I didn't expect to find.</p>
-                                                    <div class="content content-without-bg">
-                                                        <div class="name">Regina</div>
-                                                        <div class="designation">Family Insurance Client</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-    
-                                    <!-- Alexia Testimonial -->
-                                    <div class="swiper-slide">
-                                        <div class="single-card card-horizontal">
-                                            <div class="card-inner" style="height: 300px;">
-                                                <div class="content">
-                                                    <div class="rating rating-style-three">
-                                                        <div class="stars-group">
-                                                            <div class="star">
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <p class="description">If you're looking for private health insurance, you must call Elliott!! Elliott was an incredible help to me and my family. He answered every question/concern we had and was extremely thorough and knowledgeable. I would highly recommend everyone to work with Elliott!!!</p>
-                                                    <div class="content content-without-bg">
-                                                        <div class="name">Alexia</div>
-                                                        <div class="designation">Family Insurance Client</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-    
-                                    <div class="swiper-slide">
-                                        <div class="single-card card-horizontal">
-                                            <div class="card-inner" style="height: 300px;">
-                                                <div class="content">
-                                                    <div class="rating rating-style-three">
-                                                        <div class="stars-group">
-                                                            <div class="star">
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <p class="description">Elliot did amazing with setting up my family businesses health care coverage. He was extremely helpful and knowledgeable on the coverage. Not to mention he was very professional but personable. Would 100% recommend Elliot.</p>
-                                                    <div class="content content-without-bg">
-                                                        <div class="name">Nina</div>
-                                                        <div class="designation">Family Insurance Client</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-    
-                                    <div class="swiper-slide">
-                                        <div class="single-card card-horizontal">
-                                            <div class="card-inner" style="height: 300px;">
-                                                <div class="content">
-                                                    <div class="rating rating-style-three">
-                                                        <div class="stars-group">
-                                                            <div class="star">
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <p class="description">Elliot made getting health insurance such a breeze. I put off getting health insurance for years because of how complicated it seemed. Will definitely recommend Elliot to all my friends and family.</p>
-                                                    <div class="content content-without-bg">
-                                                        <div class="name">Alexis</div>
-                                                        <div class="designation">Family Insurance Client</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-    
-                                    <div class="swiper-slide">
-                                        <div class="single-card card-horizontal">
-                                            <div class="card-inner" style="height: 300px;">
-                                                <div class="content">
-                                                    <div class="rating rating-style-three">
-                                                        <div class="stars-group">
-                                                            <div class="star">
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <p class="description">Thanks for all the help Elliot! 10/10 recommend</p>
-                                                    <div class="content content-without-bg">
-                                                        <div class="name">Sara</div>
-                                                        <div class="designation">Family Insurance Client</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid" id="gallery-grid">
+                <div class="gallery-item" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
+                    <img src="assets/images/gallery/IMG_0111.jpg" alt="Gallery Image">
+                </div>
+
+                <div class="gallery-item" data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">
+                    <img src="assets/images/gallery/IMG_0337.jpg" alt="Gallery Image">
+                </div>
+
+                <div class="gallery-item" data-sal-delay="250" data-sal="slide-up" data-sal-duration="800">
+                    <img src="assets/images/gallery/IMG_0553.jpg" alt="Gallery Image">
+                </div>
+
+                <div class="gallery-item" data-sal-delay="300" data-sal="slide-up" data-sal-duration="800">
+                    <img src="assets/images/gallery/IMG_0858.jpg" alt="Gallery Image">
+                </div>
+
+                <div class="gallery-item" data-sal-delay="350" data-sal="slide-up" data-sal-duration="800">
+                    <img src="assets/images/gallery/IMG_0913.jpg" alt="Gallery Image">
+                </div>
+
+                <div class="gallery-item" data-sal-delay="400" data-sal="slide-up" data-sal-duration="800">
+                    <img src="assets/images/gallery/IMG_1427.jpg" alt="Gallery Image">
+                </div>
+
+                <div class="gallery-item" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
+                    <img src="assets/images/gallery/IMG_2221.jpg" alt="Gallery Image">
+                </div>
+
+                <div class="gallery-item" data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">
+                    <img src="assets/images/gallery/IMG_2819.jpg" alt="Gallery Image">
+                </div>
+
+                <div class="gallery-item" data-sal-delay="250" data-sal="slide-up" data-sal-duration="800">
+                    <img src="assets/images/gallery/IMG_2829.jpg" alt="Gallery Image">
+                </div>
+
+                <div class="gallery-item" data-sal-delay="300" data-sal="slide-up" data-sal-duration="800">
+                    <img src="assets/images/gallery/IMG_2855.jpg" alt="Gallery Image">
+                </div>
+
+                <div class="gallery-item" data-sal-delay="350" data-sal="slide-up" data-sal-duration="800">
+                    <img src="assets/images/gallery/IMG_3634.jpg" alt="Gallery Image">
+                </div>
+
+                <div class="gallery-item" data-sal-delay="400" data-sal="slide-up" data-sal-duration="800">
+                    <img src="assets/images/gallery/IMG_3771.jpg" alt="Gallery Image">
+                </div>
+
+                <div class="gallery-item" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
+                    <img src="assets/images/gallery/IMG_3799.jpg" alt="Gallery Image">
+                </div>
+
+                <div class="gallery-item" data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">
+                    <img src="assets/images/gallery/IMG_3854.jpg" alt="Gallery Image">
+                </div>
+
+                <div class="gallery-item" data-sal-delay="250" data-sal="slide-up" data-sal-duration="800">
+                    <img src="assets/images/gallery/IMG_5191.jpg" alt="Gallery Image">
+                </div>
+
+                <div class="gallery-item" data-sal-delay="300" data-sal="slide-up" data-sal-duration="800">
+                    <img src="assets/images/gallery/IMG_5907.jpg" alt="Gallery Image">
+                </div>
+
+                <div class="gallery-item" data-sal-delay="350" data-sal="slide-up" data-sal-duration="800">
+                    <img src="assets/images/gallery/IMG_5928.jpg" alt="Gallery Image">
+                </div>
+
+                <div class="gallery-item" data-sal-delay="400" data-sal="slide-up" data-sal-duration="800">
+                    <img src="assets/images/gallery/IMG_7691.jpg" alt="Gallery Image">
+                </div>
+
+                <div class="gallery-item" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
+                    <img src="assets/images/gallery/IMG_8115.jpg" alt="Gallery Image">
+                </div>
+
+                <div class="gallery-item" data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">
+                    <img src="assets/images/gallery/IMG_8812.jpg" alt="Gallery Image">
+                </div>
+
+                <div class="gallery-item" data-sal-delay="250" data-sal="slide-up" data-sal-duration="800">
+                    <img src="assets/images/gallery/IMG_8937.jpg" alt="Gallery Image">
+                </div>
+
+                <div class="gallery-item" data-sal-delay="300" data-sal="slide-up" data-sal-duration="800">
+                    <img src="assets/images/gallery/IMG_9695.jpg" alt="Gallery Image">
+                </div>
+
+                <div class="gallery-item" data-sal-delay="350" data-sal="slide-up" data-sal-duration="800">
+                    <img src="assets/images/gallery/IMG_9896.jpg" alt="Gallery Image">
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="row mt--60">
+                <div class="col-lg-12 text-center">
+                    <p class="description mb--30">
+                        Want to be part of our gallery? Book a consultation today!
+                    </p>
+                    <a href="book-now.html" class="tmp-btn btn-primary">Book Now</a>
                 </div>
             </div>
         </div>
     </div>
+    <!-- End Gallery Section -->
 
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightbox-close">&times;</span>
+        <img src="" alt="Gallery Image" id="lightbox-img">
+    </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- Start Footer Area  -->
     <!-- Start Footer Area  -->
     <footer class="footer-area footer-style-one-wrapper bg-color-footer bg_images tmp-section-gap">
         <div class="container">
@@ -500,7 +502,7 @@
                                 <div class="icon"><i class="fa-solid fa-alarm-clock"></i></div>
                                 <div class="content">
                                     <div class="day">Sunday - Friday:</div>
-                                    <div class="time">9:00 AM – 8:00 PM</div>
+                                    <div class="time">9:00 AM - 8:00 PM</div>
                                 </div>
                             </div>
 
@@ -525,10 +527,13 @@
                                     <a href="faq.html">FAQ</a>
                                 </li>
                                 <li>
+                                    <a href="book-now.html">Book Now</a>
+                                </li>
+                                <li>
                                     <a href="testimonials.html">Testimonials</a>
                                 </li>
                                 <li>
-                                    <a href="#">Blog</a>
+                                    <a href="gallery.html">Gallery</a>
                                 </li>
                                 <li>
                                     <a href="contact.html">Contact</a>
@@ -580,7 +585,7 @@
         </div>
     </div>
     <!-- End Footer Area  -->
-    <!-- End Footer Area  -->
+
 
 
 
@@ -618,10 +623,6 @@
     <!-- ==================== End Loading ==================== -->
 
 
-
-
-
-
     <script src="assets/js/vendor/jquery.js"></script>
     <script src="assets/js/vendor/jquery-ui.min.js"></script>
     <script src="assets/js/vendor/waypoints.min.js"></script>
@@ -644,6 +645,26 @@
     <script src="assets/js/vendor/contact-form.js"></script>
     <!-- custom Js -->
     <script src="assets/js/main.js"></script>
+
+    <script>
+        // Lightbox functionality
+        document.querySelectorAll('.gallery-item img:not(.gallery-placeholder img)').forEach(img => {
+            img.addEventListener('click', function() {
+                document.getElementById('lightbox').classList.add('active');
+                document.getElementById('lightbox-img').src = this.src;
+            });
+        });
+
+        document.getElementById('lightbox-close').addEventListener('click', function() {
+            document.getElementById('lightbox').classList.remove('active');
+        });
+
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 
 </html>
